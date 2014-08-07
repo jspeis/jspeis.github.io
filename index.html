@@ -1,6 +1,11 @@
 <!doctype html>
+<html>
+<head>
 <meta charset="utf-8">
+<title>MLB Salary Visualization</title>
+</head>
 
+</body>
 <script src="http://www.d3plus.org/js/d3.js"></script>
 <script src="http://www.d3plus.org/js/d3plus.js"></script>
 
@@ -13,15 +18,18 @@
     .data("data/salaries.json")
     .attrs("data/attrs.json")
     .type("tree_map")
-    .id(["teamID", "playerID"])
-    .color("teamID")
-    .size("salary")
+    .id(["teamID", "playerID" ])
+    .color(["teamID"])
+    .size({value: "salary", threshold: false})
     .text('name')
     .tooltip([ 'birthCountry', 'birthYear'])
     .time("yearID")
     .time({"solo": 2013})
     .timeline(true)
     .order("teamID")
+    .depth(0)
     .draw()
 
 </script>
+</body>
+</html>
