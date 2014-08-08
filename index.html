@@ -23,13 +23,14 @@
     .color("teamID")
     .size({value: "salary", threshold: false})
     .text('name')
-    .tooltip([ 'birthCountry', 'birthYear'])
+    .tooltip([ 'birthCountry', 'birthYear', 'ab'])
     .time("yearID")
     .time({"solo": 2013})
     .timeline(true)
     .order("teamID")
     .legend(false)
     .depth(0)
+    .aggs( { "avg": "mean" } ) // would be nice to do a weighted avg
     .ui([
           {
             "method" : "id",
