@@ -15,11 +15,11 @@
 
   var visualization = d3plus.viz()
     .container("#viz")
-    .data("data/salaries.json")
+    .data("data/mlb.json")
     .attrs("data/attrs.json")
     .type("tree_map")
     .id(["teamID", "playerID" ])
-    .color(["teamID"])
+    .color("teamID")
     .size({value: "salary", threshold: false})
     .text('name')
     .tooltip([ 'birthCountry', 'birthYear'])
@@ -28,6 +28,20 @@
     .timeline(true)
     .order("teamID")
     .depth(0)
+    .ui([
+          {
+            "method" : "id",
+            "value"  : [ "teamID" , "playerID" ]
+          },
+          {
+            "method" : "size",
+            "value"  : [ "salary" , "hr", "rbi",  "sb", "gidp", "avg" ]
+          },
+          {
+            "method" : "color",
+            "value"  : [ "teamID" , "birthCountry" ]
+          }
+    ])
     .draw()
 
 </script>
