@@ -20,7 +20,7 @@
     .attrs("data/attrs.json")
     .type("tree_map")
     .id(["teamID", "playerID" ])
-    .color("teamID")
+    .color("color")
     .size({value: "salary", threshold: false})
     .text('name')
     .tooltip([ 'birthCountry', 'birthYear', 'ab'])
@@ -42,7 +42,7 @@
           },
           {
             "method" : "color",
-            "value"  : [ "teamID" , "birthCountry" ]
+            "value"  : [ "color" , "birthCountry" ]
           }
     ])
     .draw()
