@@ -8,7 +8,7 @@
 
 </body>
 <script src="http://www.d3plus.org/js/d3.js"></script>
-<script src="http://www.d3plus.org/js/d3plus.js"></script>
+<script src="http://www.d3plus.org/js/d3plus.full.js"></script>
 
 <div id="viz"></div>
 
@@ -23,14 +23,14 @@
     .color("color")
     .size({value: "salary", threshold: false})
     .text('name')
-    .tooltip([ 'birthCountry', 'birthYear', 'ab', 'wraa','wrc'])
+    .tooltip([ 'birthCountry', 'birthYear', 'ab', 'wraa','wrc', 'dollarperwrc'])
     .time("yearID")
     .time({"solo": 2013})
     .timeline(true)
     .order("teamID")
-    .legend(false)
+    .legend(true)
     .depth(0)
-    .aggs( { "avg": "mean" } ) // would be nice to do a weighted avg
+    .aggs( { "avg": "mean", "wraa" : "mean" } ) // would be nice to do a weighted avg
     .ui([
           {
             "method" : "id",
@@ -38,13 +38,23 @@
           },
           {
             "method" : "size",
-            "value"  : [ "salary", "wrc", "wraa", "hr", "rbi", "avg", "sb", "gidp", "h", "ab" ]
+            "value"  : [ "salary", "dollarperwrc", "wrc", "wraa", "hr", "rbi", "avg", "sb", "gidp", "h", "ab" ]
           },
           {
             "method" : "color",
             "value"  : [ "color" , "birthCountry" ]
           }
     ])
+    .format({ "number" : function( number , key ) {
+      if (key === "year") {
+          return number;
+      } else if (key === "salary") {
+        return "$" + number.toLocaleString();
+      } else {
+        return d3.round(number,2);
+      }
+    }
+  })
     .draw()
 
 function muter(value) {
